@@ -8,20 +8,28 @@ let check = true
 let id = 0;
 
 function checkPath () {
+
     if (window.location.pathname === '/create') {
+
         created = true;
+        
         return;
     }
+
     id = window.location.pathname.replace('/edit/','');
+
     created = false;
-    console.log(id);
 }
 function getNote(notes, id) {
-    let result = notes.filter(item => String(item.id) === id)
+    let result = notes.filter(item => String(item.id) === id);
+
     if (!result.length) {
+
         check = false;
+
         return {};
     }
+
     return result[0];
 }
 
@@ -39,16 +47,8 @@ const mapStatetoProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        createNoteToState: (data) => {
-            console.log(data);
-            let result = data;
-            dispatch(createNoteInState(result))
-        },
-        updateNoteToState: (data) => {
-            console.log(data);
-            let result = data;
-            dispatch(updateNoteInState(result));
-        }
+        createNoteToState: (data) => dispatch(createNoteInState(data)),
+        updateNoteToState: (data) => dispatch(updateNoteInState(data))
     }
 }
 

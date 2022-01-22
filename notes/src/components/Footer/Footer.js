@@ -1,8 +1,7 @@
-import React from "react";
+import React from 'react';
 
 function Footer (props) {
     const { notes, category } = props;
-    // const [data, setData] = React.useState([]);
 
     function getAnalise() {
         let condition = [];
@@ -51,7 +50,7 @@ function Footer (props) {
             </div>)
         })
     } 
-    console.log(renderFooter());
+
     return (
         <>
             {renderFooter()}

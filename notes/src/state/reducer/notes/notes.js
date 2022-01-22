@@ -65,23 +65,22 @@ export default function notes(state = def, actions) {
         }
         case 'UPDATE_NOTE_TO_STATE': {
             let newState = state.map(item => {
-                console.log(item.id === actions.id);
+
                 if (item.id === actions.id) {
-                    item = {...item, ...actions.value}
-                    console.log(item);
+
+                    item = {...item, ...actions.value};
+
                 }
 
                 return item;
             })
-
-            console.log(newState);
 
             return [...newState];
         }
 
         case 'CREATE_NOTE_TO_STATE' : {
             let newState = [...state, { ...actions.value, id: state.length } ];
-            console.log(newState);
+
             return newState;
         }
         default:
@@ -127,9 +126,6 @@ export const updateNoteInState = (data) => {
         dates: dates
     }
 
-
-    console.log(result);
-
     return {
         type: 'UPDATE_NOTE_TO_STATE',
         value: result,
@@ -146,7 +142,7 @@ export const createNoteInState = (data) => {
     let year = date.getFullYear();
     let created = month + ' ' + day + ', ' + year;
     let dates = data.content.match(/[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}/g);
-    let result = {}
+    let result = {};
 
     if (!data.name.trim().length) {
         data.name = 'Edit Note';

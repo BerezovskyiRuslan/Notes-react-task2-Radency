@@ -13,13 +13,13 @@ function CreateOrEditNote(props) {
     const navigate = useNavigate();
 
     let form = created ? {
-        title: "Create New Note",
-        name: "Add new note",
-        placeholderTitile: "New"
+        title: 'Create New Note',
+        name: 'Add new note',
+        placeholderTitile: 'New'
     } : {
-        title: "Edit",
-        name: "Save edit note",
-        placeholderTitile: "Edit"
+        title: 'Edit',
+        name: 'Save edit note',
+        placeholderTitile: 'Edit'
     }; 
     
     function createOrEditNote() {
@@ -65,9 +65,6 @@ function CreateOrEditNote(props) {
                             />
                         </svg>
                     </Link>
-                    {/* <button id="close-form"> */}
-
-                    {/* </button> */}
                 </h1>
                 <div className={"container-create-item"}>
                     <label className={"container-create-item-label"} htmlFor="name-category">Title</label>
@@ -109,7 +106,6 @@ function CreateOrEditNote(props) {
                     onClick={() => createOrEditNote()}
                 >
                     {form.name}
-                    {/* ${form.name} */}
                 </button>
             </div>
         )

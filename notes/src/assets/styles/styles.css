@@ -79,7 +79,6 @@
 }
 
 .content-list-notes-item {
-    /* margin: 5px 0; */
     height: 50px;
     width: 100%;
     background-color: #e8eaf5;
@@ -227,7 +226,6 @@
     display: flex;
     align-items: center;
     background: transparent;
-    /* padding: 0 10px; */
 }
 
 .content-list-notes-item-full-name-category h3 {
@@ -289,4 +287,3 @@
     text-decoration: underline;
 }
 
-/* #e8eaf5 */

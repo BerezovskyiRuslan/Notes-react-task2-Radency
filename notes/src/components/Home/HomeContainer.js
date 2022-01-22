@@ -1,12 +1,12 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
-import Home from "./Home";
-import { setIsArchive } from "../../state/reducer/isArchive/isArchive.js";
+import Home from './Home';
+import { setIsArchive } from '../../state/reducer/isArchive/isArchive.js';
 import { 
     addOrDeleteNoteInState, 
     deleteNoteInState,
     deleteAllNotesInState
-} from "../../state/reducer/notes/notes";
+} from '../../state/reducer/notes/notes';
 
 const notesData = (state) => {
     return {

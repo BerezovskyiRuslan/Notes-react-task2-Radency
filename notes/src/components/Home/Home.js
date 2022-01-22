@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
 import NotesList from '../NotesList/NotesList.js';
 import Footer from '../Footer/Footer.js';
@@ -9,7 +9,6 @@ function Home (props) {
     return (
         
         <>  
-            {/* {console.log(category)} */}
             <div className={"container-list-notes"}>
                 <div className={"header-list-notes"}>
                     <h1 className={"w-16 first-header-position header-list-notes-name"}>Name</h1>
@@ -70,7 +69,6 @@ function Home (props) {
                         updateNoteAchive={(id) => props.updateNoteToState(id)}
                         deleteNote={(id) => props.deleteNoteToState(id)}
                     />
-                    {/* {notesList} */}
                 </div>
                 <div 
                     className={"container-button-create"}>
@@ -80,12 +78,6 @@ function Home (props) {
                     >
                         Create
                     </Link>
-                    {/* <button 
-                         
-                        id="create-note"
-                    > */}
-                        {/* Create */}
-                    {/* </button> */}
                 </div>
             </div>
 
@@ -114,7 +106,6 @@ function Home (props) {
                 <div className={"content-list-notes"}>
                     <div id="footer">
                         <Footer notes={notes} category={category} />
-                        {/* ${footerApp} */}
                     </div>
                 </div>
             </div>

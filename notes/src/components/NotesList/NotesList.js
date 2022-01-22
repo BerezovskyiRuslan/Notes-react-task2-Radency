@@ -6,13 +6,12 @@ function NotesList(props) {
     const [isVisible, setIsVisible] = React.useState([]);
 
     function setVisibleNote(id) {
-        console.log("Id: " + isVisible, "Index: " + isVisible.indexOf(id))
+
         if (isVisible.indexOf(id) + 1) {
             let result = isVisible.filter(item => item !== id);
-            console.log(result.length);
+            
             setIsVisible([...result]);
 
-            // console.log("Id: " + isVisible, "Index: " + isVisible.indexOf(id))
             return;
         }
 
@@ -20,17 +19,18 @@ function NotesList(props) {
     }
 
     function getIconButton() {
+
         let addArchiveIcon = (<svg xmlns="http://www.w3.org/2000/svg" className="content-list-notes-item-actions-button-icon" viewBox="0 0 20 20" fill="currentColor">
             <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
             <path fillRule="evenodd"
                 d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
                 clipRule="evenodd" />
         </svg>);
+
         let deleteArhiveIcon = (<svg xmlns="http://www.w3.org/2000/svg" className="content-list-notes-item-actions-button-icon" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M5 2a2 2 0 00-2 2v14l3.5-2 3.5 2 3.5-2 3.5 2V4a2 2 0 00-2-2H5zm4.707 3.707a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L8.414 9H10a3 3 0 013 3v1a1 1 0 102 0v-1a5 5 0 00-5-5H8.414l1.293-1.293z" clipRule="evenodd" />
         </svg>);
 
-        // setIconArchiveButton(isArchive ? deleteArhiveIcon : addArchiveIcon);
         return isArchive ? deleteArhiveIcon : addArchiveIcon;
     }
 
@@ -38,8 +38,6 @@ function NotesList(props) {
         return notes.filter(item => item.archive === isArchive);
     }
     function getIconCategory(name) {
-        // console.log(category);
-        // return 'icon'
         return category.filter(item => item.name === name)[0].icon;
     }
 
@@ -54,15 +52,19 @@ function NotesList(props) {
     }
 
     function notesItems() {
-        // console.log();
         let iconArchiveButton = getIconButton();
         let list = getNotesIsArchive();
+
         if (!list.length) {
+
             return <p className={"text-empty"}>Is Empty</p>
+            
         }
+
         return list.map((item) => {
-            console.log(isVisible.indexOf(item.id));
+
             let iconCategory = getIconCategory(item.category);
+
             return (
                 <div
                     key={item.id}
@@ -75,14 +77,10 @@ function NotesList(props) {
                         <div
                             className={"w-16 first-content-position content-list-notes-item-text"}
                         >
-                            {/* ${iconCategory} */}
-                            {/* <span>icon</span> */}
                             {iconCategory}
                             <span
                                 className={"content-list-notes-item-text-span"}
                             >
-                                {/* ${data.name} */}
-                                {/* <span>titile</span> */}
                                 {item.name}
                             </span>
                         </div>
@@ -92,8 +90,6 @@ function NotesList(props) {
                             <span
                                 className={"content-list-notes-item-text-span"}
                             >
-                                {/* ${data.created} */}
-                                {/* Created */}
                                 {item.created}
                             </span>
                         </div>
@@ -103,8 +99,6 @@ function NotesList(props) {
                             <span
                                 className={"content-list-notes-item-text-span"}
                             >
-                                {/* ${data.category} */}
-                                {/* <span>Category</span> */}
                                 {item.category}
                             </span>
                         </div>
@@ -125,18 +119,12 @@ function NotesList(props) {
                             <span
                                 className={"content-list-notes-item-text-span"}
                             >
-                                {/* ${data.dates} */}
-                                {/* <span>Content</span> */}
                                 {item.dates.join(',')}
                             </span>
                         </div>
                         <div
                             className={"w-16 content-list-notes-item-text"}
                         >
-                            {/* <button
-                                className={"content-list-notes-item-actions-button edit-note"}
-                                title="edit"
-                            > */}
                             <Link 
                                 to={'edit/' + item.id}
                                 className={"content-list-notes-item-actions-button"}
@@ -150,15 +138,12 @@ function NotesList(props) {
                                     <path
                                         d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                                 </svg>
-                            {/* </button> */}
                             </Link>
                             <button
                                 className={"add-archive content-list-notes-item-actions-button add-or-delete-archive"}
                                 title="Add Archive"
                                 onClick={(e) => addOrDeteleArchive(e, item.id)}
                             >
-                                {/* ${icon} */}
-                                {/* <span>Icon</span> */}
                                 {iconArchiveButton}
                             </button>
                             <button
@@ -182,6 +167,9 @@ function NotesList(props) {
                         </div>
                         <div
                             className={"container-visible"}
+                            style={{
+                                transform: 'rotate(' + (isVisible.indexOf(item.id) === -1 ? '0deg' : '180deg') + ')'
+                            }}
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -209,28 +197,20 @@ function NotesList(props) {
                                 <div
                                     className={"content-list-notes-item-name-icon-container"}
                                 >
-                                    {/* ${iconCategory} */}
-                                    {/* <span>Icon</span> */}
                                     {iconCategory}
                                 </div>
                                 <h3>
-                                    {/* ${data.name} */}
-                                    {/* <span>Titile</span> */}
                                     {item.name}
                                 </h3>
                                 <span>|</span>
                                 <span
                                     className={"content-list-notes-item-full-name-category-span"}
                                 >
-                                    {/* ${data.category} */}
-                                    {/* <span>Category</span> */}
                                     {item.category}
                                 </span>
                             </div>
 
                             <p>
-                                {/* ${data.created} */}
-                                {/* <span>Created</span> */}
                                 {item.created}
                             </p>
                         </div>

@@ -1,5 +1,5 @@
-import React from "react";
-import Routers from "./router/Router";
+import React from 'react';
+import Routers from './router/Router';
 import './assets/styles/styles.css';
 
 function App() {

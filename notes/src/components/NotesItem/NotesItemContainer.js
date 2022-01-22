@@ -15,7 +15,6 @@ function getNote(state) {
     }
 
     let categoryIcon = state.category.filter(item => result[0].category === item.name)[0].icon;
-    console.log(result.length);
     
     return {
         data: result[0],
@@ -26,6 +25,7 @@ function getNote(state) {
 
 const mapStateToProps = (state) => {
     let obj = getNote(state);
+    
     return {
         data: obj.data,
         categoryIcon: obj.categoryIcon,

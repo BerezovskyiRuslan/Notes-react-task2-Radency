@@ -3,10 +3,7 @@ import {Link} from "react-router-dom";
 import PageNotFound from "../PageNotFound/pageNotFound";
 function NotesItem (props) {
     const { data, categoryIcon, check = true } = props;
-    // let iconCategory = () => {
-    //     return category.filter(item => item.name === data.category)[0].icon || <></>;
-    // }
-
+    
     if (check) {
         return (
             <div
@@ -27,31 +24,23 @@ function NotesItem (props) {
                                 {categoryIcon}
                             </div>
                             <h3>
-                                {/* ${data.name} */}
-                                {/* <span>Titile</span> */}
                                 {data.name}
                             </h3>
                             <span>|</span>
                             <span
                                 className={"content-list-notes-item-full-name-category-span"}
                             >
-                                {/* ${data.category} */}
-                                {/* <span>Category</span> */}
                                 {data.category}
                             </span>
                             <span>|</span>
                             <span
                                 className={"content-list-notes-item-full-name-category-span"}
                             >
-                                {/* ${data.category} */}
-                                {/* <span>Category</span> */}
                                 {"State: " + (data.archive ? "Archive" : "Active")}
                             </span>
                         </div>
 
                         <p>
-                            {/* ${data.created} */}
-                            {/* <span>Created</span> */}
                             {data.created}
                             <Link to="/">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
