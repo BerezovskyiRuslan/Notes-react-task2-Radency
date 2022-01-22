@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { createNoteInState, updateNoteInState } from '../../state/reducer/notes/notes';
 
 import CreateOrEditNote from './CreateOrEditNote';
 
@@ -32,12 +33,23 @@ const mapStatetoProps = (state) => {
         data: created ? {} : getNote(state.notes, id),
         category: state.category,
         created: created,
-        check: check
+        dataCheck: check
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {}
+    return {
+        createNoteToState: (data) => {
+            console.log(data);
+            let result = data;
+            dispatch(createNoteInState(result))
+        },
+        updateNoteToState: (data) => {
+            console.log(data);
+            let result = data;
+            dispatch(updateNoteInState(result));
+        }
+    }
 }
 
 const createOrEditNote = connect(mapStatetoProps, mapDispatchToProps)(CreateOrEditNote);

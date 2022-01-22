@@ -40,18 +40,131 @@ let def = [
     }
 ]
 
-export default function notes(store = def, actions) {
+export default function notes(state = def, actions) {
     switch (actions.type) {
-        case 'PUSH_NOTE':{
-            return store;
+        case 'ADD_OR_DELETE_NOTE_ACHIVE': {
+            let newState = state.filter(item => {
+
+                if (item.id === actions.value) {
+                    item.archive = !item.archive;
+                }
+
+                return item;
+            })
+            return [...newState];
+        }
+        case 'DELETE_NOTE_TO_STATE': {
+            let newState = state.filter(item => item.id !== actions.value);
+
+            return [...newState];
+        }
+        case 'DELETE_ALL_NOTES_TO_STATE': {
+            let newState = state.filter(item => item.archive !== actions.value);
+
+            return [...newState];
+        }
+        case 'UPDATE_NOTE_TO_STATE': {
+            let newState = state.map(item => {
+                console.log(item.id === actions.id);
+                if (item.id === actions.id) {
+                    item = {...item, ...actions.value}
+                    console.log(item);
+                }
+
+                return item;
+            })
+
+            console.log(newState);
+
+            return [...newState];
+        }
+
+        case 'CREATE_NOTE_TO_STATE' : {
+            let newState = [...state, { ...actions.value, id: state.length } ];
+            console.log(newState);
+            return newState;
         }
         default:
-            return store;
+            return state;
     }
 }
 
-export const pushNote = () => {
+export const addOrDeleteNoteInState = (id) => {
     return {
-        type: 'PUSH_NOTE'
+        type: 'ADD_OR_DELETE_NOTE_ACHIVE', 
+        value: id
+    }
+}
+
+export const deleteNoteInState = (id) => {
+    return {
+        type: 'DELETE_NOTE_TO_STATE',
+        value: id
+    }
+}
+
+export const deleteAllNotesInState = (state) => {
+    return {
+        type: 'DELETE_ALL_NOTES_TO_STATE',
+        value: state
+    }
+}
+
+export const updateNoteInState = (data) => {
+    let dates = data.content.match(/[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}/g);
+    let result = {}
+
+    if (!data.name.trim().length) {
+        data.name = 'New Note';
+    }
+
+    dates = dates !== null ? dates : [];
+
+    result = {
+        name: data.name,
+        category: data.category,
+        content: data.content,
+        dates: dates
+    }
+
+
+    console.log(result);
+
+    return {
+        type: 'UPDATE_NOTE_TO_STATE',
+        value: result,
+        id: data.id
+    }
+}
+
+export const createNoteInState = (data) => {
+    let date = new Date();
+    let month = date.toLocaleDateString('en-US', {
+        month: 'long'
+    })
+    let day = date.getDate();
+    let year = date.getFullYear();
+    let created = month + ' ' + day + ', ' + year;
+    let dates = data.content.match(/[0-3]?[0-9].[0-3]?[0-9].(?:[0-9]{2})?[0-9]{2}/g);
+    let result = {}
+
+    if (!data.name.trim().length) {
+        data.name = 'Edit Note';
+    }
+
+    dates = dates !== null ? dates : [];
+
+    result = {
+        name: data.name,
+        created: created,
+        category: data.category,
+        content: data.content,
+        dates: dates,
+        archive: false,
+    }
+
+    return {
+        type: 'CREATE_NOTE_TO_STATE', 
+        value: result
     }
 }

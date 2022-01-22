@@ -1,13 +1,16 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import '../../assets/styles/created.css';
 import PageNotFound from '../PageNotFound/pageNotFound';
 
 function CreateOrEditNote(props) {
-    const { data, category, created, check = true } = props;
+    const { data, category, created, dataCheck = true } = props;
     const [name, setName] = React.useState(data.name || '');
     const [content, setContent] = React.useState(data.content || '');
-    const [select, setSelect] = React.useState(data.category || '');
+    const [select, setSelect] = React.useState(data.category || category[0].name);
+
+    const navigate = useNavigate();
 
     let form = created ? {
         title: "Create New Note",
@@ -18,11 +21,33 @@ function CreateOrEditNote(props) {
         name: "Save edit note",
         placeholderTitile: "Edit"
     }; 
-    console.log(data);
-    console.log(category);
-    // console.log(useParams());
+    
+    function createOrEditNote() {
+        
+        let noteData = {
+            name: name,
+            category: select,
+            content: content
+        }
 
-    if (check) {
+        if (created) {
+
+            props.createNoteToState(noteData);
+
+            navigate('../', { replace: true })
+
+            return;
+
+        }
+        
+        noteData.id = data.id;
+
+        props.updateNoteToState(noteData);
+
+        navigate('../', { replace: true })
+    }
+
+    if (dataCheck) {
         return (
             <div className={"container-create"}>
                 <h1 className={"container-create-title"}>
@@ -79,7 +104,10 @@ function CreateOrEditNote(props) {
                         rows="10"
                     />
                 </div>
-                <button className={"button-create"}>
+                <button 
+                    className={"button-create"}
+                    onClick={() => createOrEditNote()}
+                >
                     {form.name}
                     {/* ${form.name} */}
                 </button>

@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 
 import Home from "./Home";
-import { setIsArchive } from "../../state/reducer/isArchive/isArchive.js"
+import { setIsArchive } from "../../state/reducer/isArchive/isArchive.js";
+import { 
+    addOrDeleteNoteInState, 
+    deleteNoteInState,
+    deleteAllNotesInState
+} from "../../state/reducer/notes/notes";
 
 const notesData = (state) => {
     return {
@@ -13,7 +18,10 @@ const notesData = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        setIsArchiveToState: () => dispatch(setIsArchive())
+        setIsArchiveToState: () => dispatch(setIsArchive()),
+        updateNoteToState: (id) => dispatch(addOrDeleteNoteInState(id)),
+        deleteNoteToState: (id) => dispatch(deleteNoteInState(id)),
+        deleteAllNotesToState: (state) => dispatch(deleteAllNotesInState(state))
     }
 }
 

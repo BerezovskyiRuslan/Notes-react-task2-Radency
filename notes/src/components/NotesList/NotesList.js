@@ -43,10 +43,24 @@ function NotesList(props) {
         return category.filter(item => item.name === name)[0].icon;
     }
 
+    function addOrDeteleArchive(e, id) {
+        e.stopPropagation();
+        props.updateNoteAchive(id)
+    }
+
+    function deleteNoteItem(e, id) {
+        e.stopPropagation();
+        props.deleteNote(id)
+    }
+
     function notesItems() {
         // console.log();
         let iconArchiveButton = getIconButton();
-        return getNotesIsArchive().map((item) => {
+        let list = getNotesIsArchive();
+        if (!list.length) {
+            return <p className={"text-empty"}>Is Empty</p>
+        }
+        return list.map((item) => {
             console.log(isVisible.indexOf(item.id));
             let iconCategory = getIconCategory(item.category);
             return (
@@ -141,6 +155,7 @@ function NotesList(props) {
                             <button
                                 className={"add-archive content-list-notes-item-actions-button add-or-delete-archive"}
                                 title="Add Archive"
+                                onClick={(e) => addOrDeteleArchive(e, item.id)}
                             >
                                 {/* ${icon} */}
                                 {/* <span>Icon</span> */}
@@ -149,6 +164,7 @@ function NotesList(props) {
                             <button
                                 className={"content-list-notes-item-actions-button delete-item"}
                                 title="Delete"
+                                onClick={(e) => deleteNoteItem(e, item.id)}
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

@@ -5,8 +5,6 @@ import Footer from '../Footer/Footer.js';
 
 function Home (props) {
     const { notes, category, isArchive } = props;
-    
-
 
     return (
         
@@ -43,6 +41,7 @@ function Home (props) {
                             className={"header-button"} 
                             id="delete-all-notes" 
                             title="delete All"
+                            onClick={() => { props.deleteAllNotesToState(isArchive)}}
                         >
                             <svg 
                                 xmlns="http://www.w3.org/2000/svg" 
@@ -68,6 +67,8 @@ function Home (props) {
                         notes={notes}
                         category={category}
                         isArchive={isArchive}
+                        updateNoteAchive={(id) => props.updateNoteToState(id)}
+                        deleteNote={(id) => props.deleteNoteToState(id)}
                     />
                     {/* {notesList} */}
                 </div>
