@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomeContainer from '../components/Home/HomeContainer';
 import CreateOrEditNote from '../components/CreateOrEditNote/CreateOrEditNoteContainer.js';
 import PageNotFound from '../components/PageNotFound/pageNotFound';
-import NotesItem from '../components/NotesItem/NotesItemConteiner';
+import NotesItem from '../components/NotesItem/NotesItemContainer';
 
 function Routers() {
     return (
